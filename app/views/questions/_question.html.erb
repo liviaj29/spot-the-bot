@@ -1,0 +1,39 @@
+<div class="email-container">
+<div class="container">
+
+  <div class="sidebar">
+    <div class="user-email">gibson.oj295@gmail.com</div>  
+    <ul class="email-list">
+      <li class="email-item active">🚨 Urgent: Your Bank Account is at Risk!</li>
+      <li class="email-item">📦 Your Order #3489323 Has Been Shipped!</li>
+      <li class="email-item">⚠ Your Password Will Expire in 24 Hours!</li>
+      <li class="email-item">🔒 Security Alert: Unusual Login Attempt</li>
+    </ul>
+  </div>
+
+  <!-- Main Email View -->
+  <div class="main-content">
+    <div class="email-header"><%=@question.subject%></div>
+    
+    <div class="email-body">
+      <p><%= @question.body %></p>
+      <a href=<%= @question.link %>>Link</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Answer Form -->
+<div class="quiz-form">
+  <%= form_with url: answer_quiz_path(@quiz, @index + 1), method: :post do %>
+    <div>
+      <%= radio_button_tag :answer, 'true' %> True
+    </div>
+    <div>
+      <%= radio_button_tag :answer, 'false' %> False
+    </div>
+    <div>
+      <%= submit_tag "Submit", class: "btn-submit" %>
+    </div>
+  <% end %>
+</div>
