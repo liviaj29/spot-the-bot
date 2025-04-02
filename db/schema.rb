@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_27_114405) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_01_153440) do
+  create_table "email_questions", force: :cascade do |t|
+    t.text "subject"
+    t.text "link"
+    t.text "body"
+    t.boolean "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "emails", force: :cascade do |t|
     t.string "name"
     t.integer "user_id", null: false
@@ -31,6 +40,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_27_114405) do
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
+  create_table "quiz_questions", force: :cascade do |t|
+    t.integer "quiz_id", null: false
+    t.integer "question_id"
+    t.string "question_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_quiz_questions_on_quiz_id"
+  end
+
   create_table "quizzes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,6 +64,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_27_114405) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "text_questions", force: :cascade do |t|
+    t.text "title"
+    t.text "link"
+    t.text "body"
+    t.boolean "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email_address", null: false
     t.string "password_digest", null: false
@@ -54,7 +81,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_27_114405) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  create_table "website_questions", force: :cascade do |t|
+    t.integer "website_id"
+    t.text "url"
+    t.boolean "correct_answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "emails", "users"
   add_foreign_key "questions", "quizzes"
+  add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "sessions", "users"
 end

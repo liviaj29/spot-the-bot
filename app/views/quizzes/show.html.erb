@@ -6,5 +6,5 @@
 
 
 <ul id='questions'>
-    <%= render @question %>
+  <%= render partial: "questions/question_#{@category}", locals: { question: @question } %>
 </ul>

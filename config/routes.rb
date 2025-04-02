@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   resources :quizzes, only: [:show] do
     member do  # For submitting an answer
-      get 'question/:index', to: 'quizzes#show', as: "question"
-      post 'question/:index', to: 'quizzes#answer', as: "answer"
+      get 'question/:category/:index', to: 'quizzes#show', as: "question"
+      post 'answer/:category/:index', to: 'quizzes#answer', as: "answer"
     end
   end
 

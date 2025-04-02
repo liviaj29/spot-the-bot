@@ -4,7 +4,7 @@ class QuizzesController < ApplicationController
 
     def show
       @index = params[:index].to_i - 1
-      @question = @quiz.questions[@index]
+      @question = @questions[@index]
 
       if @question.nil?
         redirect_to quiz_path(@quiz), alert: "Question not found."
@@ -14,14 +14,15 @@ class QuizzesController < ApplicationController
   
     def answer
       @index = params[:index].to_i + 1
-      puts params[:answer]
-      puts @quiz.questions[@index - 2].description
-      puts @quiz.questions[@index - 2].answer
-      fredback = params[:answer] == @quiz.questions[@index - 2].answer.to_s ? "correct" : "incorrect"
-      if @index >= @quiz.questions.count
-        complete()
+      previous_question = @questions[@index - 2]
+
+  
+      # feedback = params[:answer] == previous_question.answer.to_s ? "correct" : "incorrect"
+  
+      if @index >= @questions.count
+        complete
       else
-        redirect_to question_quiz_path(@quiz, @index), notice: fredback
+        redirect_to question_quiz_path(@quiz, @index), notice: feedback
       end
     end
   
@@ -35,5 +36,12 @@ class QuizzesController < ApplicationController
 
     def set_quiz
       @quiz = Quiz.find(params[:id])
+      @category = params[:category]
+      @questions = case @category
+                  when 'emails' then @quiz.email_questions
+                  when 'texts' then @quiz.text_questions
+                  when 'websites' then @quiz.website_questions
+                  else []
+                  end
     end
   end
