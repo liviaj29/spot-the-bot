@@ -1,9 +1,33 @@
-<div class="text-message-container">
-  <h2>Message:</h2>
-  <p><%= simple_format(@question.body) %></p>
-  <form action="<%= answer_quiz_path(@quiz, category: 'text', index: @index) %>" method="post">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <button type="submit" name="answer" value="true" class="btn btn-danger">Phishing</button>
-    <button type="submit" name="answer" value="false" class="btn btn-success">Safe</button>
-  </form>
+<div class="container">
+    <div class="text-container">
+        <div class="main-content">
+            <div class="text-header">
+                <div class="profile-pic"></div>
+                <div class="contact-info">
+                    <div class="contact-name">John Doe</div>
+                    <div class="contact-number">+1 (555) 123-4567</div>
+                </div>
+            </div>
+            
+            <div class="messages">
+                <div class="message received"><%= simple_format(@question.body) %></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="quiz-form">
+  <%= form_with url: answer_quiz_path(@quiz, @category, @index), method: :post, data: { turbo: false } do %>
+    <div>
+      <%= radio_button_tag :answer, 'true' %> True
+    </div>
+    <div>
+      <%= radio_button_tag :answer, 'false' %> False
+    </div>
+    <div>
+      <%= submit_tag "Submit", class: "btn-submit" %>
+    </div>
+  <% end %>
 </div>

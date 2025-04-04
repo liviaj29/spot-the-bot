@@ -201,19 +201,29 @@ margin: auto;
     display: flex;
     justify-content: center;
     margin-top: 50px; /* Adjust this value based on your navbar height */
-    width: 100%;
-}
-
-/* The actual email box */
-.container { 
-    display: flex; 
     width: 800px; 
-    height: 500px; 
     background: white; 
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1); 
-    border-radius: 8px; 
-    overflow: hidden; 
+    border-radius: 8px;
 }
+
+.text-container {
+    display: flex;
+    justify-content: center;
+    background: white; 
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1); 
+    border-radius: 8px;
+    width: 400px; /* Ensures it takes full width */
+}
+
+
+.container { 
+    display: flex; 
+    height: 500px;  
+    overflow: hidden; 
+    justify-content: center; /* Centers horizontally */
+}
+
 /* Sidebar styling */
 .sidebar { width: 300px; background: #2c3e50; color: white; padding: 20px; display: flex; flex-direction: column; }
 .user-email { font-weight: bold; margin-bottom: 20px; }
@@ -225,3 +235,112 @@ margin: auto;
 .main-content { flex-grow: 1; padding: 20px; display: flex; flex-direction: column; }
 .email-header { font-size: 18px; font-weight: bold; margin-bottom: 15px; }
 .email-body { flex-grow: 1; margin-bottom: 20px; }
+
+.message {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    word-wrap: break-word;
+}
+.received {
+    background-color: #e5e5ea;
+    color: black;
+    align-self: flex-start;
+}
+.sent {
+    background-color: #007aff;
+    color: white;
+    align-self: flex-end;
+}
+.messages {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-right: 10px;
+}
+.contact-info {
+    display: flex;
+    flex-direction: column;
+}
+.contact-name {
+    font-weight: bold;
+}
+.contact-number {
+    font-size: 14px;
+    color: gray;
+}
+
+.feedback-message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.browser-frame {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 1000px;
+    max-width: 90%;
+    height: auto;
+    min-height: 600px;
+}
+
+.browser-header {
+    background: #f1f1f1;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.browser-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.browser-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-right: 1rem;
+}
+
+.browser-controls .dot {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.red { background: #ff605c; }
+.dot.yellow { background: #ffbd44; }
+.dot.green { background: #00ca56; }
+
+.url-bar {
+    flex: 1;
+    padding: 0.25rem 0.5rem;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: monospace;
+}

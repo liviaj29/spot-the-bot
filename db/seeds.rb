@@ -34,7 +34,20 @@ text_questions.each do |question|
     texts_quiz.quiz_questions.create!(question: question)
 end
 
-website_questions = WebsiteQuestion.create([website_id:1, url:"http://super-secure-website.ru", correct_answer:true])
+website_questions = WebsiteQuestion.create([
+    {website_id:1, url:"http://super-secure-website.ru", correct_answer:true, 
+    website_html: <<-HTML
+    <div>
+      <h1>Super Secure Website</h1>
+      <p>Please log in to verify your identity</p>
+      <form>
+        <input type="text" placeholder="Username" style="display:block;margin:0.5rem auto;" />
+        <input type="password" placeholder="Password" style="display:block;margin:0.5rem auto;" />
+        <button type="submit" style="margin-top:1rem;">Log In</button>
+      </form>
+    </div>
+    HTML
+  }])
 
 website_questions.each do |question|
     websites_quiz.quiz_questions.create!(question: question)

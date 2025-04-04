@@ -1,5 +1,5 @@
-<div class="email-container">
 <div class="container">
+<div class="email-container">
 
   <div class="sidebar">
     <div class="user-email">gibson.oj295@gmail.com</div>  
@@ -16,7 +16,7 @@
     <div class="email-header"><%=@question.subject%></div>
     
     <div class="email-body">
-      <p><%= @question.body %></p>
+      <p><%= simple_format(@question.body) %></p>
       <a href=<%= @question.link %>>Link</a>
     </div>
   </div>
@@ -25,7 +25,7 @@
 
 <!-- Answer Form -->
 <div class="quiz-form">
-  <%= form_with url: answer_quiz_path(@quiz, @index + 1), method: :post do %>
+  <%= form_with url: answer_quiz_path(@quiz, @category, @index), method: :post, local: true, data: { turbo: false }  do %>
     <div>
       <%= radio_button_tag :answer, 'true' %> True
     </div>

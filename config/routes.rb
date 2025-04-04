@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     member do  # For submitting an answer
       get 'question/:category/:index', to: 'quizzes#show', as: "question"
       post 'answer/:category/:index', to: 'quizzes#answer', as: "answer"
+      get :next_question
+      get :complete
     end
   end
 

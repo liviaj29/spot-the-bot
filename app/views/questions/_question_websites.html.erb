@@ -1,17 +1,29 @@
-<div class="browser-container">
+<div class="browser-wrapper">
+<div class="browser-frame">
   <div class="browser-header">
-    <button class="browser-btn">⬅</button>
-    <button class="browser-btn">🔄</button>
-    <input type="text" class="url-bar" value="<%= @question.url %>" readonly>
+    <div class="browser-controls">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <input type="text" value="<%= @question.url %>" class="url-bar" readonly />
   </div>
-
-  <div class="webpage-view">
-    <img src="<%= @question.screenshot_url %>" alt="Website Preview" class="web-screenshot">
+  <div class="browser-content">
+    <%= raw @question.website_html %>
   </div>
+</div>
+</div>
 
-  <form action="<%= answer_quiz_path(@quiz, category: 'website', index: @index) %>" method="post">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <button type="submit" name="answer" value="true" class="btn btn-danger">Phishing</button>
-    <button type="submit" name="answer" value="false" class="btn btn-success">Safe</button>
-  </form>
+<div class="quiz-form">
+  <%= form_with url: answer_quiz_path(@quiz, @category, @index), method: :post, data: { turbo: false } do %>
+    <div>
+      <%= radio_button_tag :answer, 'true' %> True
+    </div>
+    <div>
+      <%= radio_button_tag :answer, 'false' %> False
+    </div>
+    <div>
+      <%= submit_tag "Submit", class: "btn-submit" %>
+    </div>
+  <% end %>
 </div>

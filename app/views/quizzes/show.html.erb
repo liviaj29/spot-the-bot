@@ -5,6 +5,19 @@
 <div><%= notice %></div>
 
 
+<% if @feedback.present? %>
+<div class="feedback-message">
+  <p><%= @feedback %></p>
+  <% if @index < @questions.count - 1 %>
+    <%= link_to 'Next', next_question_quiz_path(@quiz, category: @category, index: @index + 1), method: :get %>
+  <% else %>
+    <%= button_to 'Finish Quiz', complete_quiz_path(@quiz), method: :get %>
+  <% end %>
+
+</div>
+<% end %>
+
+
 <ul id='questions'>
   <%= render partial: "questions/question_#{@category}", locals: { question: @question } %>
 </ul>

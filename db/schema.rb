@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_01_153440) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_04_140027) do
   create_table "email_questions", force: :cascade do |t|
     t.text "subject"
     t.text "link"
@@ -87,6 +87,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_153440) do
     t.boolean "correct_answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "website_html"
   end
 
   add_foreign_key "emails", "users"
